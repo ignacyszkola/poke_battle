@@ -1,0 +1,142 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: white;/* background: darkslategray; */
+}
+.container {
+    margin-top: 2%;
+}
+.pokemon-button {
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 18px;
+    background-color: black;
+    color: yellowgreen;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 5px solid lightseagreen;
+}
+.pokemon-button:hover {
+    background-color: darkred;
+    transform: scale(1.1);
+}
+
+#bot_pokemon{
+    position: absolute;
+    top: 5%;
+    left: 75%;
+}
+
+#pokemon_info_player{
+    background-color: slategrey;
+    display: none;
+    top: -79%;
+    left: -35%;
+    position: absolute;
+    width: 16lvw;
+    border-radius: 3%;
+}
+
+#pokemon_info_bot{
+    background-color: slategrey;
+    display: none;
+    top: 100%;
+    left: -33%;
+    position: absolute;
+    width: 15lvw;
+    border-radius: 3%;
+}
+
+img:hover + #pokemon_info_bot {
+    display: block;
+    border-radius: 3%;
+}
+
+img:hover + #pokemon_info_player {
+    display: block;
+    border-radius: 3%;
+}
+
+#player_pokemon{
+    position: absolute;
+    top: 70%;
+    left: 5%;
+}
+
+#health_player{
+    width: 15lvw;
+    height: 1lvh;
+    left: -30%;
+    top: -10%;
+    position: absolute;
+    background-color:black;
+    overflow: hidden;
+}
+
+#health_bar_player{
+    width: inherit;
+    height: inherit;
+
+    background-color: yellowgreen;
+}
+
+#health_bot{
+    width: 15lvw;
+    height: 1lvh;
+    left: -33%;
+    top: -10%;
+    position: absolute;
+    background-color:black;
+    overflow: hidden;
+}
+
+#health_bar_bot{
+    width: inherit;
+    height: inherit;
+
+    background-color: yellowgreen;
+}
+
+h1{
+    width: 200px;
+    margin: auto ;
+    padding: 2% 5% 2% 5%;
+    background-color: black;
+    color: yellowgreen;
+    border-radius: 10px;
+    border: 5px solid lightseagreen;
+    font-size: xx-large;
+}
+
+.move1, .move2{
+    bottom: 8%;
+}
+.move1, .move3{
+    left: 1%;
+}
+.move2, .move4{
+    left: 10%;
+}
+.move3, .move4{
+    bottom: 3%;
+}
+
+.move1, .move2, .move3, .move4{
+    cursor: pointer;
+    position: absolute;
+    text-align: center;
+    align-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: white;
+    width: 8%;
+    height: 3%;
+    font-size: large;
+}
+
+.move1:hover, .move2:hover, .move3:hover, .move4:hover{
+    background-color: salmon;
+    border: 5px solid black;
+    transform: scale(1.1) translateX(-2%) translateY(10%);
+}

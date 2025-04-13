@@ -1,0 +1,42 @@
+body{
+    /* background: darkslategray; */
+    color: black;
+}
+
+table{
+    color: yellowgreen;
+    font-size: xx-large;
+
+    text-align: center;
+    padding: 10px;
+
+    margin-top: 5%;
+
+    justify-self: center;
+    align-self: center;
+}
+
+td{
+    border: 5px solid lightseagreen;
+    background: black;
+}
+
+.td{
+    padding-top: 6%; 
+    padding-bottom: 6%;
+    margin-left: 10%;
+    margin-right: 100%;
+}
+
+a:link, a:visited {
+    background-color: black;
+    color: greenyellow;
+    padding: 30px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  a:hover, a:active {
+    background-color: darkred;
+  }

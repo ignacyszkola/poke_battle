@@ -1,0 +1,43 @@
+body{
+    background: darkslategray;
+}
+
+table{
+    color: yellowgreen;
+    font-size: xx-large;
+
+    text-align: center;
+    padding: 10px;
+
+    margin-top: 5%;
+
+    justify-self: center;
+    align-self: center;
+}
+
+td{
+    border: 5px solid lightseagreen;
+    background: black;
+}
+
+titleVvV{
+    font-size: larger;
+}
+
+.td{
+    padding-top: 6%; 
+    padding-bottom: 6%;
+}
+
+a:link, a:visited {
+    background-color: black;
+    color: greenyellow;
+    padding: 15% 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  a:hover, a:active {
+    background-color: darkred;
+  }
