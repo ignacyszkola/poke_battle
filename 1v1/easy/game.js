@@ -35,92 +35,117 @@ function main_game(indexP, indexB) {
     write_pokemon_bot(bots_pokemon);
     write_pokemon_pl(players_pokemon);
 
+    
     move1 = document.getElementById("move1_button");
     move1.innerHTML = `<div class="move1">${players_pokemon.moves[0].name}</div>`;
     move1.addEventListener("click", () => {
         // player_move(players_pokemon, bots_pokemon, 0);
-        bots_pokemon = player_move(players_pokemon, bots_pokemon, 0);
-        Healh_pokemon_bot(bots_pokemon.hp, bots_pokemon.maxhp);
+        ret1 = player_move(players_pokemon, bots_pokemon, 0);
+        players_pokemon = ret1[0];
+        bots_pokemon = ret1[1];
         if (bots_pokemon.hp <= 0) {
             document.getElementById("end_screan").innerHTML = `
             <img src="../../pokemons_pictures/player/${players_pokemon.name}.png" height="500" width="500"/>
             <br><br><h1>WYGRAŁEŚ Z BOTEM</h1>
             `;
         }
-        players_pokemon = bot_move(players_pokemon, bots_pokemon, 0);
-        Healh_pokemon_player(players_pokemon.hp, players_pokemon.maxhp);
+        ret2 = bot_move(players_pokemon, bots_pokemon);
+        players_pokemon = ret2[0];
+        bots_pokemon = ret2[1];
         if (players_pokemon.hp <= 0) {
             document.getElementById("end_screan").innerHTML = `
             <img src="../../pokemons_pictures/enemy/${bots_pokemon.name}.png" height="500" width="500"/>
             <br><br><h1>PRZEGRAŁEŚ Z BOTEM</h1>
             `;
         }
+        write_pokemon_bot(bots_pokemon);
+        write_pokemon_pl(players_pokemon);
+        Healh_pokemon_bot(bots_pokemon.hp, bots_pokemon.maxhp);
+        Healh_pokemon_player(players_pokemon.hp, players_pokemon.maxhp);
     });
     
     move2 = document.getElementById("move2_button");
     move2.innerHTML = `<div class="move2">${players_pokemon.moves[1].name}</div>`;
     move2.addEventListener("click", () => {
         // player_move(players_pokemon, bots_pokemon, 1);
-        bots_pokemon = player_move(players_pokemon, bots_pokemon, 1);
-        Healh_pokemon_bot(bots_pokemon.hp, bots_pokemon.maxhp);
+        ret1 = player_move(players_pokemon, bots_pokemon, 1);
+        players_pokemon = ret1[0];
+        bots_pokemon = ret1[1];
         if (bots_pokemon.hp <= 0) {
             document.getElementById("end_screan").innerHTML = `
             <img src="../../pokemons_pictures/player/${players_pokemon.name}.png" height="500" width="500"/>
             <br><br><h1>WYGRAŁEŚ Z BOTEM</h1>
             `;
         }
-        players_pokemon = bot_move(players_pokemon, bots_pokemon, 1);
-        Healh_pokemon_player(players_pokemon.hp, players_pokemon.maxhp);
+        ret2 = bot_move(players_pokemon, bots_pokemon);
+        players_pokemon = ret2[0];
+        bots_pokemon = ret2[1];
         if (players_pokemon.hp <= 0) {
             document.getElementById("end_screan").innerHTML = `
             <img src="../../pokemons_pictures/enemy/${bots_pokemon.name}.png" height="500" width="500"/>
             <br><br><h1>PRZEGRAŁEŚ Z BOTEM</h1>
             `;
         }
+        write_pokemon_bot(bots_pokemon);
+        write_pokemon_pl(players_pokemon);
+        Healh_pokemon_bot(bots_pokemon.hp, bots_pokemon.maxhp);
+        Healh_pokemon_player(players_pokemon.hp, players_pokemon.maxhp);
     });
     
     move3 = document.getElementById("move3_button");
     move3.innerHTML = `<div class="move3">${players_pokemon.moves[2].name}</div>`;
     move3.addEventListener("click", () => {
         // player_move(players_pokemon, bots_pokemon, 2);
-        bots_pokemon = player_move(players_pokemon, bots_pokemon, 2);
-        Healh_pokemon_bot(bots_pokemon.hp, bots_pokemon.maxhp);
+        ret1 = player_move(players_pokemon, bots_pokemon, 2);
+        players_pokemon = ret1[0];
+        bots_pokemon = ret1[1];
         if (bots_pokemon.hp <= 0) {
             document.getElementById("end_screan").innerHTML = `
             <img src="../../pokemons_pictures/player/${players_pokemon.name}.png" height="500" width="500"/>
             <br><br><h1>WYGRAŁEŚ Z BOTEM</h1>
             `;
         }
-        players_pokemon = bot_move(players_pokemon, bots_pokemon, 2);
-        Healh_pokemon_player(players_pokemon.hp, players_pokemon.maxhp);
+        ret2 = bot_move(players_pokemon, bots_pokemon);
+        players_pokemon = ret2[0];
+        bots_pokemon = ret2[1];
         if (players_pokemon.hp <= 0) {
             document.getElementById("end_screan").innerHTML = `
             <img src="../../pokemons_pictures/enemy/${bots_pokemon.name}.png" height="500" width="500"/>
             <br><br><h1>PRZEGRAŁEŚ Z BOTEM</h1>
             `;
         }
+        write_pokemon_bot(bots_pokemon);
+        write_pokemon_pl(players_pokemon);
+        Healh_pokemon_bot(bots_pokemon.hp, bots_pokemon.maxhp);
+        Healh_pokemon_player(players_pokemon.hp, players_pokemon.maxhp);
     });
     
     move4 = document.getElementById("move4_button");
     move4.innerHTML = `<div class="move4">${players_pokemon.moves[3].name}</div>`;
     move4.addEventListener("click", () => {
         // player_move(players_pokemon, bots_pokemon, 3);
-        bots_pokemon = player_move(players_pokemon, bots_pokemon, 3);
-        Healh_pokemon_bot(bots_pokemon.hp, bots_pokemon.maxhp);
+        ret1 = player_move(players_pokemon, bots_pokemon, 3);
+        players_pokemon = ret1[0];
+        bots_pokemon = ret1[1];
         if (bots_pokemon.hp <= 0) {
             document.getElementById("end_screan").innerHTML = `
             <img src="../../pokemons_pictures/player/${players_pokemon.name}.png" height="500" width="500"/>
             <br><br><h1>WYGRAŁEŚ Z BOTEM</h1>
             `;
         }
-        players_pokemon = bot_move(players_pokemon, bots_pokemon, 3);
-        Healh_pokemon_player(players_pokemon.hp, players_pokemon.maxhp);
+        ret2 = bot_move(players_pokemon, bots_pokemon);
+        players_pokemon = ret2[0];
+        bots_pokemon = ret2[1];
         if (players_pokemon.hp <= 0) {
             document.getElementById("end_screan").innerHTML = `
             <img src="../../pokemons_pictures/enemy/${bots_pokemon.name}.png" height="500" width="500"/>
             <br><br><h1>PRZEGRAŁEŚ Z BOTEM</h1>
             `;
         }
+        write_pokemon_bot(bots_pokemon);
+        write_pokemon_pl(players_pokemon);
+        Healh_pokemon_bot(bots_pokemon.hp, bots_pokemon.maxhp);
+        Healh_pokemon_player(players_pokemon.hp, players_pokemon.maxhp);
     });
 
 
