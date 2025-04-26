@@ -140,3 +140,53 @@ h1{
     border: 5px solid black;
     transform: scale(1.1) translateX(-2%) translateY(10%);
 }
+
+#status_bot{
+    top: 2%;
+    left: 66%;
+}
+
+#status_pl{
+    top: 66%;
+    left: 20%;
+}
+
+#status_pl, #status_bot{
+    font-weight:bolder;
+    position: absolute;
+}
+
+.Freeze{
+    border: 5px solid #5bc0de;
+    background-color:#dff9ff;
+    color: #005f73;
+    border-radius: 5px;
+}
+
+.Burn{
+    border: 5px solid #e67e22;
+    background-color: #fff1e0;
+    color: #7f3300;
+    border-radius: 5px;
+}
+
+.Poison{
+    border: 5px solid #9b59b6;
+    background-color: #f3e6ff;
+    color: #4a0072;
+    border-radius: 5px;
+}
+
+.Sleep{
+    border: 5px solid #95a5a6;
+    background-color: #f0f3f4;
+    color: #2c3e50;
+    border-radius: 5px;
+}
+
+.Paralysis{
+    border: 5px solid #f1c40f;
+    background-color: #fffbe6;
+    color: #7f6f00;
+    border-radius: 5px;
+}

@@ -12,6 +12,30 @@ function Healh_pokemon_bot( hp, maxhp ) {
     infoHp.textContent = `hp: ${hp}/${maxhp}`
 }
 
+function check_status(pokemon, status, rounds) {
+    rounds = 1;
+    switch(status.name){
+        case "Paralysis":
+            if(pokemon.accuracy == pokemon.maxaccuracy) pokemon.accuracy*=0.75;
+            if(pokemon.speed == pokemon.maxspeed) pokemon.speed *= 0.5;
+            rounds = 0;
+            break;
+        case "Burn":
+            if(pokemon.attack == pokemon.maxattack) pokemon.attack*=0.5;
+            pokemon.hp -= (pokemon.maxhp * (1/16));
+            rounds = 0;
+            break;
+        case "Poison":
+            pokemon.hp -= (pokemon.maxhp * (1/8));
+            rounds = 0;
+            break;
+        }
+        if(Math.random() < status.rounds/100) rounds = 0;
+        const return_ar = [pokemon, rounds];
+        return return_ar;
+}
+
+
 function check_types(pokemon1, pokemon2, boost, num_move) {
     const type1 = pokemon2.type1;
     const type2 = pokemon2.type2;
@@ -81,10 +105,10 @@ function player_move(player, bot, num_move) {
     const what_effect = player.moves[num_move].what_effect;
     const effect = player.moves[num_move].effect;
     const attackP = player.moves[num_move];
-console.log("boost ", boost)
     switch(effect){
         case "statsB":
         case "damage_statsB":
+            if(bot.status != null) break;
             switch(what_effect){
                 case "Paralysis":
                     if( Math.random() < chance/100) {
@@ -166,7 +190,7 @@ console.log("boost ", boost)
             console.log(" recover: ", damage * attackP.power.maxhp)
             console.log("hp after: ", player.hp);
         }
-    } else if(attackP.category == "Status"){
+    } else if(attackP.category == "Status" && attackP.power!=0){
         if("attack" in attackP.power) player.attack=Math.ceil(player.maxattack*attackP.power.attack);
         if("defense" in attackP.power) player.defense=Math.ceil(player.maxdefense*attackP.power.defense);
         if("spec_attack" in attackP.power) player.spec_attack=Math.ceil(player.maxspec_attack*attackP.power.spec_attack);
@@ -174,9 +198,10 @@ console.log("boost ", boost)
         if("speed" in attackP.power) player.speed=Math.ceil(player.maxspeed*attackP.power.speed);
         if("maxhp" in attackP.power) player.hp+=Math.ceil(attackP.power.maxhp * player.maxhp)
         if(player.hp>player.maxhp) player.hp = player.maxhp;
+        damage = 0;
     }
     bot.hp-=damage;
-    console.log("damage ", damage)
+    console.log("damage ", damage, " nazwa attack ", attackP.name)
     Math.ceil(bot.hp);Math.ceil(player.hp);
     const ret1 = [player, bot];
     return ret1;
@@ -212,9 +237,11 @@ function bot_move(player, bot) {
     const chance = bot.moves[num_move]?.chance;
     const what_effect = bot.moves[num_move]?.what_effect;
     const effect = bot.moves[num_move]?.effect;
+    const attackB = bot.moves[num_move];
     switch (effect) {
         case "statsB":
         case "damage_statsB":
+            if(player.status != null) break;
             switch (what_effect) {
                 case "Paralysis":
                     if (Math.random() < chance / 100) {
@@ -242,11 +269,11 @@ function bot_move(player, bot) {
                     }
                     break;
                 default:
-                    if ("spec_defense" in what_effect) player.spec_defense *= what_effect.spec_defense;
-                    if ("spec_attack" in what_effect) player.spec_attack *= what_effect.spec_attack;
-                    if ("defense" in what_effect) player.defense *= what_effect.defense;
-                    if ("attack" in what_effect) player.attack *= what_effect.attack;
-                    if ("speed" in what_effect) player.speed *= what_effect.speed;
+                    if("attack" in what_effect) player.attack = Math.ceil(player.maxattack * what_effect.attack);
+                    if("defense" in what_effect) player.defense = Math.ceil(player.maxdefense * what_effect.defense);
+                    if("spec_attack" in what_effect) player.spec_attack = Math.ceil(player.maxspec_attack * what_effect.spec_attack);
+                    if("spec_defense" in what_effect) player.spec_defense = Math.ceil(player.maxspec_defense * what_effect.spec_defense);
+                    if("speed" in what_effect) player.speed = Math.ceil(player.maxspeed * what_effect.speed);
                     break;
             }console.log(player.status);
             break;
@@ -302,9 +329,19 @@ function bot_move(player, bot) {
                 console.log(" recover: ", damage * bot.moves[num_move].power.maxhp)
                 console.log("hp after: ", bot.hp);
             }
+        }else if(attackB.category == "Status"){
+            if("attack" in attackB.power) bot.attack=Math.ceil(bot.maxattack*attackB.power.attack);
+            if("defense" in attackB.power) bot.defense=Math.ceil(bot.maxdefense*attackB.power.defense);
+            if("spec_attack" in attackB.power) bot.spec_attack=Math.ceil(bot.maxspec_attack*attackB.power.spec_attack);
+            if("spec_defense" in attackB.power) bot.spec_defense=Math.ceil(bot.maxspec_defense*attackB.power.spec_defense);
+            if("speed" in attackB.power) bot.speed=Math.ceil(bot.maxspeed*attackB.power.speed);
+            if("maxhp" in attackB.power) bot.hp+=Math.ceil(attackB.power.maxhp * bot.maxhp)
+            if(bot.hp>bot.maxhp) bot.hp = bot.maxhp;
+            damage = 0;
         }
         Math.ceil(bot.hp);Math.ceil(player.hp);
         player.hp -= damage;
+        console.log("atttack: ", attackB.name, " damage: ", damage)
         const ret2 = [player, bot];
         return ret2;
 }
@@ -322,7 +359,9 @@ function write_pokemon_pl(pokemon) {
         spec.defense: ${pokemon.spec_defense}<br>
         speed: ${pokemon.speed}</div>
         <br /><br />
-        `;    
+        `;if(pokemon.status != null){
+            document.getElementById("status_pl").innerHTML = `<div class="${pokemon.status}">${pokemon.status}</div>`;
+        }
 }
 
 function write_pokemon_bot(pokemon) {
@@ -332,6 +371,13 @@ function write_pokemon_bot(pokemon) {
     <div id="pokemon_info_bot">${pokemon.name} (Type: ${pokemon.type1}${pokemon.type2 ? "/" + pokemon.type2 : ""})
     <br><span id="pokemon_info_bot_hp">hp: ${pokemon.hp}/${pokemon.maxhp}</span></div>
     `;if(pokemon.status != null){
-        document.getElementById("bot_pokemon").innerHTML += `<br>status = ${pokemon.status}`;
+        document.getElementById("status_bot").innerHTML = `<div class="${pokemon.status}">${pokemon.status}</div>`;
     }
+}
+
+function end(WorL, EorP, Pname) {
+        document.getElementById("end_screan").innerHTML = `
+        <img src="../../pokemons_pictures/${enemy}/${bots_pokemon.name}.png" height="500" width="500"/>
+        <br><br><h1>PRZEGRAŁEŚ Z BOTEM</h1>
+        `;
 }

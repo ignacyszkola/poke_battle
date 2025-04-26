@@ -58,6 +58,7 @@ function main_game(indexP, indexB) {
             <br><br><h1>PRZEGRAŁEŚ Z BOTEM</h1>
             `;
         }
+
         write_pokemon_bot(bots_pokemon);
         write_pokemon_pl(players_pokemon);
         Healh_pokemon_bot(bots_pokemon.hp, bots_pokemon.maxhp);
@@ -147,7 +148,4 @@ function main_game(indexP, indexB) {
         Healh_pokemon_bot(bots_pokemon.hp, bots_pokemon.maxhp);
         Healh_pokemon_player(players_pokemon.hp, players_pokemon.maxhp);
     });
-
-
-
 }
