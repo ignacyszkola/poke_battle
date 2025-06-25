@@ -529,7 +529,7 @@ function write_pokemon_bot(pokemon) {
 // Pname - players_pokemon.name or bots_pokemon.name
 function end(who, final_verdict, Pname) {
         document.getElementById("end_screan").innerHTML = `
-        <img src="../../pokemons_pictures/${who}/${Pname}.png" height="500" width="500"/>
+        <img src="pokemons_pictures/${who}/${Pname}.png" height="500" width="500"/>
         <br><br><h1>${final_verdict} Z BOTEM</h1>
         `;
 }
